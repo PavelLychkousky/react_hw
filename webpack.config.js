@@ -1,22 +1,11 @@
-const path = require('path');
+const merge = require('webpack-merge');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const pathsConfig = require('./webpack.base.js');
 
-module.exports = {
-  context: path.join(__dirname, 'src'),
-
-  entry: {
-    client: './client/app.js',
-    styles: './client/style.less'
-  },
-
-  output: {
-    path: path.join(__dirname, "dist"),
-    filename: '[name].js'
-  },
-
+const devConfig = {
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   },
 
   module: {
@@ -45,7 +34,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Test',
       hash: true,
-      template: './client/index.html'
+      template: './index.html'
     }),
     new ExtractTextPlugin({
       filename: 'style.css',
@@ -53,5 +42,8 @@ module.exports = {
     })
   ],
   watch: true
-}
-;
+};
+
+module.exports = merge.strategy({
+  entry: 'replace',
+})(pathsConfig, devConfig);
