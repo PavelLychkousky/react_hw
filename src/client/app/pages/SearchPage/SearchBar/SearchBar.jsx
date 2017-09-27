@@ -5,25 +5,44 @@ import Toggler from '../../../components/Toggler'
 import Logo from '../../../components/Logo'
 import Button from '../../../components/Button'
 
-function SearchBar(props) {
-  return (
-    <div className="search-bar">
-      <Logo />
-      <div className="movie-search-container">
-        <div className="title">find your movie</div>
-        <input type="text"/>
-        <div className="search-by">
-          <div className="title">search by</div>
-          <Toggler
-            options={props.sources}
-            selectedValue={props.selectedValue}
-            onChange={props.changeSource}
-          />
-          <Button title="search" />
+export default class SearchBar extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      query: this.props.query
+    };
+
+    this.search = this.search.bind(this);
+    this.changeQuery = this.changeQuery.bind(this);
+  }
+
+  search () {
+    this.props.search(this.state.query);
+  }
+
+  changeQuery (evt) {
+    this.setState({query: evt.currentTarget.value});
+  }
+
+  render () {
+    return (
+      <div className="search-bar">
+        <Logo />
+        <div className="movie-search-container">
+          <div className="title">find your movie</div>
+          <input type="text" onChange={this.changeQuery} value={this.state.query}/>
+          <div className="search-by">
+            <div className="title">search by</div>
+            <Toggler
+              options={this.props.sources}
+              selectedValue={this.props.selectedValue}
+              onChange={this.props.changeSource}
+            />
+            <Button title="search" onClick={this.search}/>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    )
+  }
 }
-
-export default SearchBar;

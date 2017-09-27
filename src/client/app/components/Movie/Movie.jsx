@@ -8,7 +8,7 @@ function Movie (props) {
   return (
     <div className="movie" id={movie.id}>
       <img />
-      <MovieInfo movie={movie}/>
+      <MovieInfo movie={movie} history={props.history}/>
     </div>
   );
 }

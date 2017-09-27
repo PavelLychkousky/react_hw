@@ -8,6 +8,7 @@ function MovieList (props) {
       <Movie
         key={movie.id}
         movie={movie}
+        history={props.history}
       />
     );
 

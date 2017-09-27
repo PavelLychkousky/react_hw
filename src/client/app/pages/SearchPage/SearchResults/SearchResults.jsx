@@ -8,6 +8,7 @@ function SearchResults(props) {
     <div className="search-results">
       <MovieList
         movies={props.movies}
+        history={props.history}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pathsConfig = require('./webpack.base.js');
@@ -41,6 +42,14 @@ const devConfig = {
       allChunks: true
     })
   ],
+
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    historyApiFallback: true
+  },
+
   watch: true
 };
 
