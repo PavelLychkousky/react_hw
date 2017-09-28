@@ -9,8 +9,10 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
+    "webpack-dev-server": "^2.8.2",
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
@@ -35,7 +37,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "node ./src/server/server.js",
-    "start-webpack": "webpack --config .//webpack.config.js --progress",
+    "start-webpack": "webpack-dev-server --open",
     "start-dev": "concurrent --kill-others \"npm run start-webpack\" \"npm run start-server\""
   },
   "repository": {

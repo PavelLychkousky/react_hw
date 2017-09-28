@@ -4,7 +4,7 @@ import styles from './Button.less';
 
 function Button(props) {
   return (
-    <div className="btn">
+    <div className="btn" onClick={props.onClick}>
       {props.title}
     </div>
   );
