@@ -7,7 +7,7 @@ import SearchBar from './SearchBar/SearchBar'
 import SearchResultsInfo from './SearchResultsInfo/SearchResultsInfo'
 import SearchResults from './SearchResults/SearchResults'
 import * as pageActions from './data/SearchPageActions'
-import {SORTS, SOURCES} from './data/consts'
+import {SORTS, SOURCES, SEARCH_URL} from './data/consts'
 
 class SearchPage extends React.Component {
   constructor (props) {
@@ -16,7 +16,6 @@ class SearchPage extends React.Component {
     this.changeSort = this.changeSort.bind(this);
     this.changeSource = this.changeSource.bind(this);
     this.changeQuery = this.changeQuery.bind(this);
-
   }
 
   componentWillMount () {
@@ -36,7 +35,7 @@ class SearchPage extends React.Component {
   changeQuery (query) {
     this.props.pageActions.searchMovies(query, this.props.page.sortBy);
 
-    const searchUrl = '/search/' + query;
+    const searchUrl = `${SEARCH_URL}${query}`;
     this.props.history.push(searchUrl);
   }
 

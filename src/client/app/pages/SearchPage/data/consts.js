@@ -16,3 +16,5 @@ export const SEARCH_ACTIONS = {
   SET_SOURCE_OPTION: 'SET_SOURCE_OPTION',
   SEARCH_MOVIE_ERROR: 'SEARCH_MOVIE_ERROR'
 };
+
+export const SEARCH_URL = '/search/';

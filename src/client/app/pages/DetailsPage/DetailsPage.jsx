@@ -8,17 +8,24 @@ import MovieList from '../../components/MovieList'
 import MovieDetails from '../../components/MovieDetails'
 import * as pageActions from './data/DetailsPageActions'
 
-function DetailsPage (props) {
-  const title = props.match.params.title || '';
-  if (title) {
-    props.pageActions.getMovie(title);
+class DetailsPage extends React.Component {
+  constructor (props) {
+    super(props);
+
+    const title = props.match.params.title || '';
+    if (title) {
+      props.pageActions.getMovie(title);
+    }
+
   }
 
-  return (
-    <Page>
-      <MovieDetails movie={props.page.movie} history={props.history}/>
-    </Page>
-  );
+  render () {
+    return (
+      <Page>
+        <MovieDetails movie={this.props.page.movie} history={this.props.history}/>
+      </Page>
+    );
+  }
 }
 
 function mapStateToProps (state) {
@@ -27,7 +34,7 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     pageActions: bindActionCreators(pageActions, dispatch)
   }

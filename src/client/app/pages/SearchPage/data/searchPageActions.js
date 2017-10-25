@@ -2,32 +2,26 @@ import {fetchMoviesByTitle} from '../../../api/api';
 import {SORTS, SOURCE, SEARCH_ACTIONS} from './consts';
 
 export function searchMovies (query, sortBy) {
-  if (query) {
-    return (dispatch) => {
-      dispatch({
-        type: SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST,
-        payload: query
-      });
+  return (dispatch) => {
+    dispatch({
+      type: SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST,
+      payload: query
+    });
 
-      fetchMoviesByTitle(query)
-        .then((movies) => {
-          dispatch({
-            type: SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS,
-            payload: sortMovies(movies, sortBy)
-          })
+    fetchMoviesByTitle(query)
+      .then((movies) => {
+        dispatch({
+          type: SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS,
+          payload: sortMovies(movies, sortBy)
         })
-        .catch(() => {
-          dispatch({
-            type: SEARCH_ACTIONS.SEARCH_MOVIE_ERROR,
-            payload: []
-          });
+      })
+      .catch(() => {
+        dispatch({
+          type: SEARCH_ACTIONS.SEARCH_MOVIE_ERROR,
+          payload: []
         });
-    }
+      });
   }
-  return {
-    type: SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS,
-    payload: []
-  };
 }
 
 export function changeSort (sort) {

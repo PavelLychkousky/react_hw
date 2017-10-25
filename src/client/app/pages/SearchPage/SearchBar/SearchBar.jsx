@@ -10,7 +10,6 @@ export default class SearchBar extends React.Component {
     super(props);
 
     this.search = this.search.bind(this);
-    //this.changeQuery = this.changeQuery.bind(this);
   }
 
   search () {
