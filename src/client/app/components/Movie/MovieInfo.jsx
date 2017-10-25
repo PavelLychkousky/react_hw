@@ -4,7 +4,7 @@ function MovieInfo (props) {
   var movie = props.movie;
 
   function goToMovie () {
-    props.history.push('/film/' + movie.title);
+    props.history.push('/film/' + movie.id);
   }
   return (
     <div className="movie-info">

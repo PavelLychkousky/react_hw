@@ -1,102 +1,80 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Page from '../../components/Page'
 import SearchBar from './SearchBar/SearchBar'
 import SearchResultsInfo from './SearchResultsInfo/SearchResultsInfo'
 import SearchResults from './SearchResults/SearchResults'
-import movies from '../../test-data/dataMovies'
+import * as pageActions from './data/SearchPageActions'
+import {SORTS, SOURCES} from './data/consts'
 
-const sorts = [
-  {value: 'rating', title: 'rating'},
-  {value: 'releaseYear', title: 'release year'}
-];
-
-const sources = [
-  {value: 'title', title: 'title'},
-  {value: 'director', title: 'director'}
-];
-
-export default class SearchPage extends React.Component {
+class SearchPage extends React.Component {
   constructor (props) {
     super(props);
-
-    const query = this.props.match.params.searchQuery || '';
-    this.state = {
-      sortBy: sorts[0].value,
-      source: sources[0].value,
-      query: query,
-      movies: this.doSearch(query, sources[0].value)
-    };
-
-    if (query) {
-      this.search(query, sources[0].value);
-    }
 
     this.changeSort = this.changeSort.bind(this);
     this.changeSource = this.changeSource.bind(this);
     this.changeQuery = this.changeQuery.bind(this);
+
+  }
+
+  componentWillMount () {
+    const query = this.props.match.params.searchQuery || '';
+    this.changeQuery(query);
   }
 
   changeSort (sortValue) {
-    this.setState({
-      sortBy: sortValue
-    });
+    this.props.pageActions.changeSort(sortValue);
+    this.props.pageActions.sort(this.props.page.movies, sortValue);
   }
 
   changeSource (sourceValue) {
-    this.setState({
-      source: sourceValue
-    });
-    this.search('', sourceValue);
+    this.props.pageActions.changeSource(sourceValue);
   }
 
   changeQuery (query) {
-    this.setState({
-      query: query
-    });
-    this.search(query);
-  }
-
-  search (query, source) {
-    query = query || this.state.query;
-    source = source || this.state.source;
-
-    this.setState({
-      movies: this.doSearch(query, source)
-    });
+    this.props.pageActions.searchMovies(query, this.props.page.sortBy);
 
     const searchUrl = '/search/' + query;
     this.props.history.push(searchUrl);
-  }
-
-  doSearch (query, source) {
-    if (query) {
-      return movies.filter(movie => movie[source].toLowerCase().indexOf(query.toLowerCase()) !== -1);
-    }
-    return [];
   }
 
   render () {
     return (
       <Page>
         <SearchBar
-          sources={sources}
+          sources={SOURCES}
           changeSource={this.changeSource}
-          selectedValue={this.state.source}
+          selectedValue={this.props.page.source}
           search={this.changeQuery}
-          query={this.state.query}
+          query={this.props.page.query}
         />
         <SearchResultsInfo
-          moviesAmount={this.state.movies.length}
-          selectedValue={this.state.sortBy}
-          options={sorts}
+          moviesAmount={this.props.page.movies.length}
+          selectedValue={this.props.page.sortBy}
+          options={SORTS}
           changeSort={this.changeSort}
         />
         <SearchResults
-          movies={this.state.movies}
+          movies={this.props.page.movies}
           history={this.props.history}
         />
       </Page>
     );
   }
 }
+
+function mapStateToProps (state) {
+  return {
+    page: state.searchPage
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    pageActions: bindActionCreators(pageActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
