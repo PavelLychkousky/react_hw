@@ -9,20 +9,11 @@ export default class SearchBar extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      query: this.props.query
-    };
-
     this.search = this.search.bind(this);
-    this.changeQuery = this.changeQuery.bind(this);
   }
 
   search () {
-    this.props.search(this.state.query);
-  }
-
-  changeQuery (evt) {
-    this.setState({query: evt.currentTarget.value});
+    this.props.search(this.query.value);
   }
 
   render () {
@@ -31,7 +22,7 @@ export default class SearchBar extends React.Component {
         <Logo />
         <div className="movie-search-container">
           <div className="title">find your movie</div>
-          <input type="text" onChange={this.changeQuery} value={this.state.query}/>
+          <input type="text" defaultValue={this.props.query} ref={(input) => this.query = input}/>
           <div className="search-by">
             <div className="title">search by</div>
             <Toggler
