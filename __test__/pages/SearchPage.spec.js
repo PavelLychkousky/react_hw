@@ -41,5 +41,5 @@ it('should change source', () => {
   const wrapper = shallow(<SearchPage {...props}/>);
   const realComponentInstance = wrapper.instance();
   realComponentInstance.changeSort('value');
-  expect(props.pageActions.searchMovies).toHaveBeenCalled();
+  expect(props.pageActions.changeSort).toHaveBeenCalled();
 });
