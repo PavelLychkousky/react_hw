@@ -9,7 +9,7 @@ import SearchResults from './SearchResults/SearchResults'
 import * as pageActions from './data/SearchPageActions'
 import {SORTS, SOURCES, SEARCH_URL} from './data/consts'
 
-class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
   constructor (props) {
     super(props);
 
@@ -20,7 +20,9 @@ class SearchPage extends React.Component {
 
   componentWillMount () {
     const query = this.props.match.params.searchQuery || '';
-    this.changeQuery(query);
+    if (query) {
+      this.changeQuery(query);
+    }
   }
 
   changeSort (sortValue) {
