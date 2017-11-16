@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './MovieList.less';
 import Movie from '../Movie'
 
 function MovieList (props) {

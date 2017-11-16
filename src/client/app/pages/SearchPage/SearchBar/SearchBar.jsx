@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './SearchBar.less';
 import Toggler from '../../../components/Toggler'
 import Logo from '../../../components/Logo'
 import Button from '../../../components/Button'

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './MovieDetails.less';
 import Logo from '../Logo'
 import Button from '../Button'
 

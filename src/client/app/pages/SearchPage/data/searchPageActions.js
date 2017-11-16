@@ -1,47 +1,39 @@
+import { call, put, all, takeLatest } from 'redux-saga/effects';
 import {fetchMoviesByTitle} from '../../../api/api';
-import {SORTS, SOURCE, SEARCH_ACTIONS} from './consts';
+import {SORTS, SEARCH_ACTIONS} from './consts';
 
-export function searchMovies (query, sortBy) {
-  return (dispatch) => {
-    dispatch({
-      type: SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST,
-      payload: query
-    });
+export const searchMovies = (query, sortBy) => ({
+    type: SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST,
+    payload: query
+  });
 
-    fetchMoviesByTitle(query)
-      .then((movies) => {
-        dispatch({
-          type: SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS,
-          payload: sortMovies(movies, sortBy)
-        })
-      })
-      .catch(() => {
-        dispatch({
-          type: SEARCH_ACTIONS.SEARCH_MOVIE_ERROR,
-          payload: []
-        });
-      });
-  }
+export const updateMovies = (movies, sortBy) => ({
+    type: SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS,
+    payload: sortMovies(movies, sortBy)
+  });
+
+// Sagas
+function* searchMoviesAsync() {
+  const movies = yield call(() => fetchMoviesByTitle(query));
+
+  yield put(updateMovies(movies, sortBy));
 }
 
-export function changeSort (sort) {
+export function* watchSearchMovies() {
+  yield takeLatest(SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST, searchMoviesAsync);
+}
+
+export function* changeSort (sort) {
   return {
     type: SEARCH_ACTIONS.SET_SORT_OPTION,
     payload: sort
   };
 }
 
-export function sort (movies, sortBy) {
+export function* sort (movies, sortBy) {
   return {
     type: SEARCH_ACTIONS.SORT_MOVIES,
     payload: sortMovies(movies, sortBy)
-  };
-}
-
-export function changeSource (source) {
-  return {
-    type: SEARCH_ACTIONS.SET_SOURCE_OPTION,
-    payload: source
   };
 }
 
@@ -52,4 +44,10 @@ function sortMovies (movies, sortBy) {
     ));
   }
   return [];
+}
+
+export function* saga() {
+  yield all([
+    watchSearchMovies()
+  ]);
 }

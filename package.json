@@ -4,6 +4,8 @@
   "description": "",
   "main": "./src/client/app.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "isomorphic-fetch": "^2.2.1",
     "less": "^2.7.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -12,6 +14,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
+    "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "webpack-dev-server": "^2.8.2",
     "webpack-merge": "^4.1.0"
@@ -41,8 +44,8 @@
   },
   "scripts": {
     "test": "jest",
-    "start-server": "node ./src/server/server.js",
-    "start-webpack": "webpack-dev-server --open",
+    "start-server": "babel-node ./src/server/server.js",
+    "start-webpack": "webpack -d",
     "start-dev": "concurrent --kill-others \"npm run start-webpack\" \"npm run start-server\""
   },
   "repository": {

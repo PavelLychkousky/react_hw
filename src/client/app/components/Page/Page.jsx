@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './Page.less';
 import Logo from '../Logo'
 
 function Page(props) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import styles from './DetailsPage.less'
 import Page from '../../components/Page'
 import MovieList from '../../components/MovieList'
 import MovieDetails from '../../components/MovieDetails'

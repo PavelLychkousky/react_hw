@@ -1,11 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, 'src/client/'),
-
-  entry: {
-    client: './app/app.js'
-  },
+  entry: ['babel-polyfill',  './src/client/app/index.jsx'],
 
   output: {
     path: path.join(__dirname, "dist"),

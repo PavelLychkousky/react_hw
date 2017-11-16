@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './SearchResultsInfo.less'
 import Toggler from '../../../components/Toggler'
 
 export default class SearchResultsInfo extends React.Component {
