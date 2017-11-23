@@ -8,14 +8,11 @@ import MovieDetails from '../../components/MovieDetails'
 import * as pageActions from './data/DetailsPageActions'
 
 class DetailsPage extends React.Component {
-  constructor (props) {
-    super(props);
-
-    const title = props.match.params.title || '';
+  componentWillMount() {
+    const title = this.props.match.params.title || '';
     if (title) {
-      props.pageActions.getMovie(title);
+      this.props.pageActions.getMovie(title);
     }
-
   }
 
   render () {

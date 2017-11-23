@@ -4,7 +4,7 @@ import {SORTS, SEARCH_ACTIONS} from './consts';
 
 export const searchMovies = (query, sortBy) => ({
     type: SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST,
-    payload: query
+    payload: {query, sortBy}
   });
 
 export const updateMovies = (movies, sortBy) => ({
@@ -12,25 +12,14 @@ export const updateMovies = (movies, sortBy) => ({
     payload: sortMovies(movies, sortBy)
   });
 
-// Sagas
-function* searchMoviesAsync() {
-  const movies = yield call(() => fetchMoviesByTitle(query));
-
-  yield put(updateMovies(movies, sortBy));
-}
-
-export function* watchSearchMovies() {
-  yield takeLatest(SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST, searchMoviesAsync);
-}
-
-export function* changeSort (sort) {
+export function changeSort (sort) {
   return {
     type: SEARCH_ACTIONS.SET_SORT_OPTION,
     payload: sort
   };
 }
 
-export function* sort (movies, sortBy) {
+export function sort (movies, sortBy) {
   return {
     type: SEARCH_ACTIONS.SORT_MOVIES,
     payload: sortMovies(movies, sortBy)
@@ -46,7 +35,18 @@ function sortMovies (movies, sortBy) {
   return [];
 }
 
-export function* saga() {
+// Sagas
+function* searchMoviesAsync(action) {
+  const movies = yield call(() => fetchMoviesByTitle(action.payload.query));
+
+  yield put(updateMovies(movies, action.payload.sortBy));
+}
+
+export function* watchSearchMovies() {
+  yield takeLatest(SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST, searchMoviesAsync);
+}
+
+export function* moviesSaga() {
   yield all([
     watchSearchMovies()
   ]);

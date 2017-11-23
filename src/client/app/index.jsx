@@ -10,7 +10,6 @@ import configureStore from './store/store';
 
 // Grab the state from a global variable injected into the server-generated HTML
 const store = configureStore(window.PRELOADED_STATE);
-//const store = configureStore({});
 // Allow the passed state to be garbage-collected
 delete window.PRELOADED_STATE;
 

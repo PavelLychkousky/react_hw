@@ -10,7 +10,7 @@ const initialState = {
 export default function SearchPageReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_ACTIONS.SEARCH_MOVIE_REQUEST:
-      return { ...state, query: action.payload };
+      return { ...state, query: action.payload.query };
 
     case SEARCH_ACTIONS.SEARCH_MOVIE_SUCCESS:
       return { ...state, movies: action.payload };
