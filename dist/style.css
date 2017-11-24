@@ -1,0 +1,254 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.app {
+  width: 100%;
+  min-width: 400px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial;
+  min-height:100%;
+  position:relative;
+}
+.footer {
+  background-color: black;
+  height: 50px;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-width: 400px;
+  max-width: 800px;
+}
+.logo {
+  font-size: 12px;
+  color: #C21F39;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+.search-bar {
+  background-color: black;
+  height: 160px;
+  padding: 10px 40px 30px 40px;
+  color: white;
+}
+.search-bar input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #C21F39;
+  height: 25px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+.search-bar .movie-search-container {
+  text-transform: uppercase;
+}
+.search-bar .title {
+  font-size: 16px;
+}
+.search-bar .search-by {
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+.search-bar .search-by div {
+  display: inline-block;
+}
+.search-bar .search-by .toggler-item {
+  background-color: gray;
+  padding: 5px 15px 5px 15px;
+}
+.search-bar .search-by .toggler-item.active {
+  background-color: #C21F39;
+}
+.toggler-item {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.btn {
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  background-color: #C21F39;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.search-results-info {
+  background-color: #868686;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 15px;
+  height: 30px;
+}
+.search-results-info .result-amount {
+  float: left;
+}
+.search-results-info div {
+  display: inline-block;
+}
+.search-results-info .sort-by {
+  float: right;
+}
+.search-results-info .sort-by .toggler-item {
+  padding: 5px 15px 5px 15px;
+}
+.search-results-info .sort-by .toggler-item.active {
+  color: #C21F39;
+}
+.search-results {
+  padding: 40px;
+  padding-bottom: 90px;
+  overflow: auto;
+}
+.search-bar {
+  background-color: black;
+  height: 160px;
+  padding: 10px 40px 30px 40px;
+  color: white;
+}
+.search-bar input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #C21F39;
+  height: 25px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+.search-bar .movie-search-container {
+  text-transform: uppercase;
+}
+.search-bar .title {
+  font-size: 16px;
+}
+.search-bar .search-by {
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+.search-bar .search-by div {
+  display: inline-block;
+}
+.search-bar .search-btn {
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  background-color: #C21F39;
+}
+.search-bar .search-by .toggler-item {
+  background-color: gray;
+  padding: 5px 15px 5px 15px;
+  margin-right: 10px;
+}
+.search-bar .search-by .toggler-item.active {
+  background-color: #C21F39;
+}
+.movie {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 180px;
+}
+.movie img {
+  height: 270px;
+  width: 180px;
+}
+.movie .movie-info {
+  position: relative;
+}
+.movie .title {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.movie .genre {
+  margin-top: 10px;
+  font-size: 12px;
+  text-transform: capitalize;
+  color: gray;
+}
+.movie .year {
+  padding: 5px 10px;
+  border: 1px solid gray;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.movies-by {
+  background-color: #868686;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 15px;
+  height: 30px;
+  margin-bottom: 30px;
+}
+.movie-details {
+  background-color: black;
+  padding: 15px 40px;
+  overflow: auto;
+}
+.movie-details .btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  color: #C21F39;
+}
+.movie-details .picture {
+  float: left;
+  max-width: 300px;
+  min-width: 100px;
+}
+.movie-details .movie-description {
+  float: left;
+  color: white;
+}
+.movie-details .movie-description .title {
+  color: #C21F39;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+}
+.movie-details .movie-description .rating {
+  color: green;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 2px solid green;
+  display: inline-block;
+  margin-left: 25px;
+  clear: both;
+}
+.movie-details .movie-description .year,
+.movie-details .movie-description .duration,
+.movie-details .movie-description .description,
+.movie-details .movie-description .director,
+.movie-details .movie-description .cast {
+  padding-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+}
+.movie-details .movie-description .description {
+  color: gray;
+  font-weight: normal;
+}
+.movie-details .movie-description .duration {
+  margin-left: 30px;
+}
+.movie-details .movie-description .director,
+.movie-details .movie-description .cast {
+  font-size: 14px;
+  color: gray;
+}

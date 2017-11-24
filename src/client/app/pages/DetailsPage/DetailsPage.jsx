@@ -2,21 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import styles from './DetailsPage.less'
 import Page from '../../components/Page'
 import MovieList from '../../components/MovieList'
 import MovieDetails from '../../components/MovieDetails'
 import * as pageActions from './data/DetailsPageActions'
 
 class DetailsPage extends React.Component {
-  constructor (props) {
-    super(props);
-
-    const title = props.match.params.title || '';
+  componentWillMount() {
+    const title = this.props.match.params.title || '';
     if (title) {
-      props.pageActions.getMovie(title);
+      this.props.pageActions.getMovie(title);
     }
-
   }
 
   render () {

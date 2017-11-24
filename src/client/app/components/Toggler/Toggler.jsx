@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './Toggler.less'
 import TogglerItem from './TogglerItem'
 
 function Toggler (props) {

@@ -32,11 +32,6 @@ const devConfig = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Test',
-      hash: true,
-      template: './index.html'
-    }),
     new ExtractTextPlugin({
       filename: 'style.css',
       allChunks: true
